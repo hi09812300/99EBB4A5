@@ -13,9 +13,8 @@ table{
 table input{
 	width: 100%;
 	text-align: right;
-	font-size: 25px;
+	font-size: 48px;
 	border: 0px;
-	background-color: #e1f1f9;
 }
 table td{
 	width: 25%;
