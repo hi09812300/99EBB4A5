@@ -1,0 +1,15 @@
+{
+  "name": "계산기",
+  "short_name": "계산기",
+  "icons": [{
+    "src": "./calculator128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "./calculator256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }],
+  "start_url": "https://hi09812300.github.io/99EBB4A5/index.html",
+  "display": "standalone"
+}
