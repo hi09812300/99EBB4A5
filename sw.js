@@ -1,10 +1,8 @@
 'use strict';
-var d = new Date();
-d = d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate();
 
 let cacheVersion = 1;
 let cacheName = 'app';
-let cacheLabel = cacheName + '::' + cacheVersion + '::' + d;
+let cacheLabel = cacheName + '::' + cacheVersion;
 let cacheFiles = [
   './manifest.json',
   './style.css',
