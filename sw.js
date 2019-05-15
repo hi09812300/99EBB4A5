@@ -12,9 +12,31 @@ let cacheFiles = [
   './cal.min.js'
 ];
 
+const OFFLINE_URL = 'index.html';
+
+function createCacheBustedRequest(url) {
+  let request = new Request(url, {cache: 'reload'});
+  // See https://fetch.spec.whatwg.org/#concept-request-mode
+  // This is not yet supported in Chrome as of M48, so we need to explicitly check to see
+  // if the cache: 'reload' option had any effect.
+  if ('cache' in request) {
+    return request;
+  }
+
+  // If {cache: 'reload'} didn't have any effect, append a cache-busting URL parameter instead.
+  let bustedUrl = new URL(url, self.location.href);
+  bustedUrl.search += (bustedUrl.search ? '&' : '') + 'cachebust=' + Date.now();
+  return new Request(bustedUrl);
+}
+
 self.addEventListener('install', function(event) {
   console.log('[ServiceWorker-App] Install');
   event.waitUntil(
+    fetch(createCacheBustedRequest(OFFLINE_URL)).then(function(response) {
+      return caches.open(CURRENT_CACHES.offline).then(function(cache) {
+        return cache.put(OFFLINE_URL, response);
+      });
+    })
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
         if (cacheLabel.indexOf(key) === -1) {
