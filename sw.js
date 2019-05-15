@@ -36,7 +36,7 @@ self.addEventListener('install', function(event) {
       return caches.open(CURRENT_CACHES.offline).then(function(cache) {
         return cache.put(OFFLINE_URL, response);
       });
-    })
+    })/*
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
         if (cacheLabel.indexOf(key) === -1) {
@@ -48,7 +48,7 @@ self.addEventListener('install', function(event) {
           })
         }
       }));
-    })
+    })*/
   );
 });
 self.addEventListener('activate', function(event) {
