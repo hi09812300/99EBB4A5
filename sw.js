@@ -44,7 +44,10 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
+      return response || fetch(event.request).catch(error => {
+        console.log('Fetch failed; returning offline page instead.', error);
+        return caches.match("index.html");
+      });
     })
   );
 });
