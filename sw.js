@@ -1,6 +1,6 @@
 'use strict';
 
-let cacheVersion = 1;
+let cacheVersion = 1.1;
 let cacheName = 'app';
 let cacheLabel = cacheName + '::' + cacheVersion;
 let cacheFiles = [
