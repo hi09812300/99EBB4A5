@@ -1,6 +1,6 @@
 'use strict';
 
-let cacheVersion = 1.1;
+let cacheVersion = 1.2;
 let cacheName = 'app';
 let cacheLabel = cacheName + '::' + cacheVersion;
 let cacheFiles = [
@@ -36,19 +36,7 @@ self.addEventListener('install', function(event) {
       return caches.open(cacheLabel).then(function(cache) {
         return cache.put(OFFLINE_URL, response);
       });
-    })/*
-    caches.keys().then(function(keyList) {
-      return Promise.all(keyList.map(function(key) {
-        if (cacheLabel.indexOf(key) === -1) {
-          caches.open(cacheLabel).then(function(cache) {
-            console.log('[ServiceWorker-App] Caching files');
-            return cache.addAll(cacheFiles);
-          }).then(function() {
-            return self.skipWaiting();
-          })
-        }
-      }));
-    })*/
+    })
   );
 });
 self.addEventListener('activate', function(event) {
